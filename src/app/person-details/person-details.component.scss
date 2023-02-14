@@ -1,0 +1,24 @@
+
+.mat-mdc-radio-button ~ .mat-mdc-radio-button {
+    margin-left: 16px;
+  }
+//   .example-full-width{
+//       float: right;
+//       width:25vw ;
+//       margin-right: 5vw;
+//   }
+.children{
+    float: right;
+    width:25vw ;
+    margin-right: 5vw;
+}
+
+mat-form-field{
+    display: block;
+    width: 30vw;
+}#none{
+    display: none;
+}
+#addC{
+    margin-top: 10px;
+}
