@@ -1,24 +1,24 @@
 <form (ngSubmit)="save(myForm);" #myForm="ngForm">
     <mat-form-field class="example-full-width">
         <mat-label>שם פרטי</mat-label>
-        <input matInput  name="FirstName" [(ngModel)]="empty.FirstName" value="" (changes)="saveName()"  #fName="ngModel" required>
+        <input matInput  name="FirstName" [(ngModel)]="empty.FirstName"   pattern="[A-Za-zא-ת]{2,30}" (changes)="saveName()"  #fName="ngModel" required>
       </mat-form-field>
-      <!-- <div class="error" *ngIf="fName.touched&&!fName.valid">שם פרטי הוא שדה חובה</div> -->
+      <div class="error" *ngIf="fName.touched&&!fName.valid">שם פרטי הוא שדה חובה יש למלאותו מינימום ב 2 אותיות</div>
       <mat-form-field class="example-full-width">
         <mat-label>שם משפחה</mat-label>
-        <input matInput  name="LastName" [(ngModel)]="empty.LastName" #lName="ngModel" required >
+        <input matInput  name="LastName" [(ngModel)]="empty.LastName" pattern="[A-Za-zא-ת]{2,30}" #lName="ngModel" required >
       </mat-form-field>
-      <!-- <div class="error" *ngIf="lName.touched&&!lName.valid">שם משפחה הוא שדה חובה</div> -->
+      <div class="error" *ngIf="lName.touched&&!lName.valid"> שם משפחה הוא שדה חובה יש למלאותו מינימום ב2 אותיות</div>
       <mat-form-field class="example-full-width">
         <mat-label>תעודת זהות</mat-label>
-        <input matInput name="Identity" [(ngModel)]="empty.Identity" #tz="ngModel" minlength="9" maxlength="9" required >
+        <input matInput name="Identity" [(ngModel)]="empty.Identity" #tz="ngModel" pattern="[0-9]{9}" maxlength="9" required >
       </mat-form-field>
-      <!-- <div class="error" *ngIf="tz.touched&&!tz.valid"> תעודת זהות היא שדה חובה באורך 9 ספרות</div> -->
+      <div class="error" *ngIf="tz.touched&&!tz.valid"> תעודת זהות היא שדה חובה באורך 9 ספרות</div>
       <mat-form-field appearance="fill">
         <mat-label>תאריך לידה</mat-label>
-        <input matInput type="date" name="DateOfBirth" [(ngModel)]="empty.DateOfBirth" #dateOfBirth="ngModel" required>
+        <input matInput type="date" name="DateOfBirth" min="1900-01-01" max="2023-15-02"[(ngModel)]="empty.DateOfBirth" #dateOfBirth="ngModel" required>
      </mat-form-field>
-      <!-- <div class="error" *ngIf="dateOfBirth.touched&&!dateOfBirth.valid"> תאריך לידה הוא שדה חובה</div> -->
+      <div class="error" *ngIf="dateOfBirth.touched&&!dateOfBirth.valid"> תאריך לידה הוא שדה חובה</div>
       <mat-radio-group color="primary" aria-label="Select an option" name="Gender" [(ngModel)]="empty.Gender" #gender="ngModel" required>
        <mat-radio-button value="1">נקבה</mat-radio-button>
        <mat-radio-button value="2">זכר</mat-radio-button>
@@ -38,23 +38,31 @@
       כללית</mat-option>
       </mat-select>
       </mat-form-field>
-      <!-- <div class="error" *ngIf="hmo.touched&&!hmo.valid">קופת חולים שדה חובה</div> -->
+      <div class="error" *ngIf="hmo.touched&&!hmo.valid">קופת חולים שדה חובה</div>
     <button mat-raised-button color="primary" type="submit" [disabled]="!myForm.valid">עדכון הפרטים</button>
 </form>
-<form  #myChild="ngForm">
-  <div> 
+<br/>
+<button id="Is" mat-raised-button color="primary" type="submit"  (click)="IsChild()"> יש לך ילדים? לחץ עלי </button>
+<form  #myChild="ngForm" *ngIf="c===true">
+
   <mat-form-field class="children">
     <mat-label>שם </mat-label>
-    <input matInput  name="name" [(ngModel)]="oneChild.Name" #name="ngModel" required >
+    <input matInput  name="name" pattern="[A-Za-zא-ת]{2,30}"[(ngModel)]="oneChild.Name" #name="ngModel" required >
   </mat-form-field>
+  <!-- <div class="error" *ngIf="name.touched&&!name.valid">שם הוא שדה חובה יש למלאותו מינימום ב 2 אותיות</div> -->
+
   <mat-form-field class="children">
     <mat-label>תעודת זהות</mat-label>
-    <input matInput  name="id" [(ngModel)]="oneChild.Identity" #id="ngModel" placeholder="מספר בן 9 ספרות" minlength="9" maxlength="9" required >
+    <input matInput  name="id" [(ngModel)]="oneChild.Identity" #id="ngModel" placeholder="מספר בן 9 ספרות" pattern="[0-9]{9}" maxlength="9" required >
   </mat-form-field>
+  <!-- <div class="error" *ngIf="id.touched&&!id.valid"> תעודת זהות היא שדה חובה באורך 9 ספרות</div> -->
+
   <mat-form-field class="children">
     <mat-label>תאריך לידה</mat-label>
     <input matInput type="date" name="dateOfChild" [(ngModel)]="oneChild.DateOfBirth" #dateOfChild="ngModel" required>
  </mat-form-field>
+<!-- <div class="error" *ngIf="dateOfChild.touched&&!dateOfChild.valid"> תאריך לידה הוא שדה חובה</div> -->
+
  <button id="addC" mat-raised-button color="primary" type="submit" [disabled]="!myChild.valid" (click)="addChild()">הוסף ילד</button>
-</div>
+
 </form>

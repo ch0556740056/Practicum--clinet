@@ -10,12 +10,12 @@ export class PersonalDetailServiceService {
 
   constructor(public http:HttpClient) { }
 baseRouteUrl=`${environment.baseUrl}/PersonDetail`
-GetAllPersonDetails(){
-  return this.http.get<PersonalDetails[]>(`${this.baseRouteUrl}`);
-}
-GetPersonalDetailById(id) {
-  return this.http.get<PersonalDetails>(`${this.baseRouteUrl}/${id}`);
-}
+// GetAllPersonDetails(){
+//   return this.http.get<PersonalDetails[]>(`${this.baseRouteUrl}`);
+// }
+// GetPersonalDetailById(id) {
+//   return this.http.get<PersonalDetails>(`${this.baseRouteUrl}/${id}`);
+// }
 AddPersonalDetails(personal:PersonalDetails){
   return this.http.post<PersonalDetails>(`${this.baseRouteUrl}`,personal)
 }

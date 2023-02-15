@@ -13,9 +13,9 @@ export class ChildServiceService {
   // GetAllChildren(){
   //   return this.http.get<Child[]>(`${this.baseRouteUrl}`);
   // }
-  GetChildById(id) {
-    return this.http.get<Child>(`${this.baseRouteUrl}`,id);
-  }
+  // GetChildById(id) {
+  //   return this.http.get<Child>(`${this.baseRouteUrl}`,id);
+  // }
   AddChild(child:Child){
     return this.http.post<Child>(`${this.baseRouteUrl}`,child)
   }
